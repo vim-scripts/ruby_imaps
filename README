@@ -1,0 +1,50 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1726
+
+This is (another) snippets script that tries to emulate what I've seen of Textmates snippets feature (I haven't used Textmate, so this assumption is based on rails screencasts I've watched).
+
+This uses imaps.vim. A *great* script originally written by Srinath Avadhanula and modified by Benji Fisher. It is part of the latex suite of scripts but I've included it here with Srinaths and Benjis permission. (If you use latexsuite then there is no need to install  the file again).
+
+I've set maplocalleader to ";" in ruby_imaps.vim. If you have set it elsewhere then comment out or remove the first line in that script. You can change it to your preferred key if required. All mappings begin with <localleader>.
+
+How it works.
+Since this is a ruby ftplugin, the mappings will only work if you are editing a .rb file
+The script is nothing more than a collection of imaps that contain '<+  +>' regions. The description of which is probably best illustrated with an example.
+
+in a .rb file type ' ;tc ' (<localleader>tc) while in insert mode (without the quotes).
+this will expand to:
+
+---
+require "test/unit"
+require "<+ lib file name +>"
+
+class Test<+ NameOfTestCases +> < Test::Unit:TestCase
+  def test_<+ test case name +>
+    <++>
+  end
+end
+---
+
+and <+ lib file name +> should be selected.
+If you start typing the path to the required file it will overwrite <+ lib file name +>.
+Once you've finished, hold the control key and hit 'j' (CTL-j).
+
+This is were the magic of imaps.vim happens!
+
+You should jump to the next <+ +> section (<+ NameOfTestCases +>)
+Again, replace by simply typing a viable name.
+CTL-j again will jump to and select <+ test case name +>
+Continue typing replacements and jumping to the next <+ +> region using CTL-j until you've completed the snippet.
+
+Note: I've specifically written this for ruby (NOT rails). I've intentionally called it ruby_imaps to not only indicate it uses imaps.vim, but hoping that if others liked it and would like to create other ftplugins they might follow the naming convention (python_imaps, perl_imaps etc). Only a suggestion though ;-)
+
+Browse through ruby_imaps.vim to see all mappings.
+Some others to test are:    ;ama  ;inj0  ;eawi
+
+I've tried to make the text between the <+ and +> describe what needs to be typed at any particular point.
+
+Any suggestions or feedback would be greatly appreciated (markonlinux At internode Dot on Dot net)
+(For eg I really need to include more do/ end blocks!)
+
+
+-- 
+Mark
